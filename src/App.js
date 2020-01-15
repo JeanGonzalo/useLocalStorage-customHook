@@ -1,12 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useLocalStorage } from './useLocalStorage'
 
 function App() {
 
-  const [text, setText] = useState(
-    window.localStorage.getItem('text')
-  );
+  const [text, setText] = useLocalStorage('text', '')
 
   const setLocalStorage = value => {
     try {
@@ -19,7 +17,7 @@ function App() {
   return (
     <Fragment>
       <textarea
-        onChange={e => setLocalStorage(e.target.value)}
+        onChange={e => setText(e.target.value)}
         value={text}
         placeholder="Qué está pasando?"
       />
